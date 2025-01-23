@@ -1,6 +1,4 @@
 <?php
-include 'functions/login/main_functions.php';
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_POST['password'])) {
 	$email = $_POST['email'];
 	$password = $_POST['password'];
@@ -28,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
                 ?>
                 <script>
                     alert("Selamat Datang <?php echo $level?> <?php echo $username ?>");
-                    window.location.href = "index.php";
+                    window.location.href = "undangan.php";
                 </script>
                 <?php
             } else {

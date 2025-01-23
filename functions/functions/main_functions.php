@@ -60,4 +60,48 @@ function SQLConnectPDO($dsn, $db, $usrname, $pass)
 	}
 	
 }
+
+function CheckEmail($email)
+{
+	global $config, $table;
+	$sql = "SELECT COUNT(*) FROM $table WHERE f_email=:email";
+	$stmt = $config->prepare($sql);
+	$stmt->bindParam(":email", $email);
+	$stmt->execute();
+	$result = $stmt->fetchColumn();
+    $stmt = null;
+
+    return $result;
+}
+
+function SelectAccount($email)
+{
+	global $config, $table;
+	$stmt = $config->prepare("SELECT * FROM $table WHERE f_email=:email");
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+
+function CookieRememberMe($expiryTime, $username)
+{
+    setcookie("remember_me", $username, $expiryTime, "/");
+}
+
+function CookieLevel($expiryTime, $level)
+{
+	setcookie("level", $level, $expiryTime, "/");
+}
+
+function CookieActiveTime($expiryTime)
+{
+    setcookie("cookie_exp", $expiryTime, $expiryTime, "/");
+}
+
+function CookieIdUser($expiryTime, $id)
+{
+    setcookie("id", $id, $expiryTime, "/");
+}
 ?>
