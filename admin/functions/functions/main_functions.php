@@ -1,6 +1,6 @@
 <?php
 // Upload File
-function UploadIMG($file)
+function UploadIMG($file, $location)
 {
 	if (isset($file)) {
 		if ($file['error'] == 0) {
@@ -12,7 +12,7 @@ function UploadIMG($file)
 				'jfif',
 				'webp'
 			];
-			$target_Dir = 'asset/invitations_image';
+			$target_Dir = $location;
 			$target_File = $target_Dir . $file['name'];
 			$img_Ext_Info = new SplFileInfo($file['name']);
 			$img_Ext = $img_Ext_Info->getExtension();

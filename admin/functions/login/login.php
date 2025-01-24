@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
                 ?>
                 <script>
                     alert("Selamat Datang <?php echo $level?> <?php echo $username ?>");
-                    window.location.href = "undangan.php";
+                    window.location.href = "index.php";
                 </script>
                 <?php
             } else {

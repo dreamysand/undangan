@@ -1,7 +1,8 @@
 <?php
 session_start();
 require 'functions/config/config.php';
-include 'functions/admin/invitations/create_invitations.php';
+include 'functions/admin/invitations/edit_invitations.php';
+include 'functions/admin/invitations/update_invitations.php';
 echo htmlspecialchars($_COOKIE['id']);
 ?>
 <html lang="en">
@@ -112,17 +113,44 @@ echo htmlspecialchars($_COOKIE['id']);
     <div class="oval-container">
         <h1>Menambahkan Acara</h1>
         <form action="" method="post" enctype="multipart/form-data">
-            <input type="text" name="acara" placeholder="Masukkan nama acara">
-            <input type="date" name="tanggal" placeholder="Pilih tanggal acara">
-            <input type="text" name="lokasi" placeholder="Masukkan link lokasi acara">
-            <input type="file" name="gambar" placeholder="Masukkan gambar acara">
-            <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-                Tambah
-            </button>
+            <?php
+            foreach ($result as $acara) {
+                ?>
+                <img src="<?= $acara['f_image'];?>" style="width: 50%; height: 10rem;" id="imageView" alt=""><br>
+                <input type="text" value="<?= $acara['f_acara'];?>" name="acara" placeholder="Masukkan nama acara">
+                <input type="date" value="<?= $acara['f_tanggal_acara'];?>" name="tanggal" placeholder="Pilih tanggal acara">
+                <input type="text" value="<?= $acara['f_alamat'];?>" name="lokasi" placeholder="Masukkan link lokasi acara">
+                <input type="text" value="<?= $acara['f_image'];?>" name="imageOld" hidden>
+                <input type="file" value="<?= $acara['f_image'];?>" id="imageInput" name="gambar" placeholder="Masukkan gambar acara">
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Tambah
+                </button>  
+                <?php
+            }
+            ?>
         </form>
+        <script>
+            const imageInput = document.getElementById('imageInput');
+            const imageView = document.getElementById('imageView');
+            imageInput.addEventListener('change', function (event) {
+                const image = event.target.files[0];
+
+                if (image) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        imageView.src = e.target.result;
+                    }
+
+                    reader.readAsDataURL(image);
+                } else {
+                    console.log('Error')
+                }
+            })
+        </script>
     </div>
 </body>
 </html>
