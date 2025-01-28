@@ -27,9 +27,12 @@ CREATE TABLE IF NOT EXISTS `t_admin` (
   `f_password` varchar(100) NOT NULL,
   PRIMARY KEY (`f_id`),
   UNIQUE KEY `f_email` (`f_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Pengeluaran data tidak dipilih.
+-- Membuang data untuk tabel undangan_main.t_admin: ~0 rows (lebih kurang)
+INSERT INTO `t_admin` (`f_id`, `f_username`, `f_email`, `f_password`) VALUES
+	(1, 'Dreamysand', 'dreamysand@gmail.com', '$2y$10$/.uxjDjU.8ETG/u4UrwHye5oeO40TCepl404UcHdPT6i1IFAx4V36'),
+	(2, 'Dudung', 'dudung@gmail.com', '$2y$10$1XmH0sEVT7BCN73mWP9TYuczLnBK2RqBoKjR/jiktt0nXn.kyXoS.');
 
 -- membuang struktur untuk table undangan_main.t_invitations
 CREATE TABLE IF NOT EXISTS `t_invitations` (
@@ -43,9 +46,12 @@ CREATE TABLE IF NOT EXISTS `t_invitations` (
   PRIMARY KEY (`f_id`),
   KEY `FK_t_invitations_t_admin` (`f_admin_id`),
   CONSTRAINT `FK_t_invitations_t_admin` FOREIGN KEY (`f_admin_id`) REFERENCES `t_admin` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Pengeluaran data tidak dipilih.
+-- Membuang data untuk tabel undangan_main.t_invitations: ~0 rows (lebih kurang)
+INSERT INTO `t_invitations` (`f_id`, `f_admin_id`, `f_acara`, `f_alamat`, `f_tanggal_acara`, `f_image`, `f_file_path`) VALUES
+	(1, 1, 'Jobfair SMK Negeri 71 Jakarta 2026', 'https://maps.app.goo.gl/znV78WuXC5jYwQY69', '2025-06-10', '../jobfair-smk-negeri-71-jakarta-2026/asset/nakano-miku-4k-s6-2560x1440%20%281%29.jpg', '../jobfair-smk-negeri-71-jakarta-2026'),
+	(2, 1, 'Pernikahan Dean dan Megumin', 'https://maps.app.goo.gl/znV78WuXC5jYwQY69', '2025-06-10', '../pernikahan-dean-dan-megumin/asset/1315441.jpg', '../pernikahan-dean-dan-megumin');
 
 -- membuang struktur untuk table undangan_main.t_invitations_data
 CREATE TABLE IF NOT EXISTS `t_invitations_data` (
@@ -60,13 +66,12 @@ CREATE TABLE IF NOT EXISTS `t_invitations_data` (
   `f_kode_qr` varchar(250) NOT NULL,
   PRIMARY KEY (`f_id`),
   UNIQUE KEY `f_kode_unik_tamu` (`f_kode_unik_tamu`),
-  UNIQUE KEY `f_email_tamu` (`f_email_tamu`),
   UNIQUE KEY `f_kode_qr` (`f_kode_qr`),
   KEY `FK_t_invitations_data_t_invitations` (`f_acara_id`),
   CONSTRAINT `FK_t_invitations_data_t_invitations` FOREIGN KEY (`f_acara_id`) REFERENCES `t_invitations` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Pengeluaran data tidak dipilih.
+-- Membuang data untuk tabel undangan_main.t_invitations_data: ~0 rows (lebih kurang)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

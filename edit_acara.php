@@ -132,23 +132,11 @@ echo htmlspecialchars($_COOKIE['id']);
             }
             ?>
         </form>
-        <script>
+        <script src="functions/functions/main_functions.js">
             const imageInput = document.getElementById('imageInput');
             const imageView = document.getElementById('imageView');
             imageInput.addEventListener('change', function (event) {
-                const image = event.target.files[0];
-
-                if (image) {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        imageView.src = e.target.result;
-                    }
-
-                    reader.readAsDataURL(image);
-                } else {
-                    console.log('Error')
-                }
+                UpdateImage(imageInput, imageView);
             })
         </script>
     </div>

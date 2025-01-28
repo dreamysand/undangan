@@ -17,10 +17,10 @@
      <a class="text-blue-600 font-semibold" href="#">
       DASHBOARD
      </a>
-     <a class="text-blue-600 font-semibold" href="#">
+     <a class="text-blue-600 font-semibold" href="event-list.php">
       MANAJEMEN UNDANGAN
      </a>
-     <a class="text-blue-600 font-semibold" href="#">
+     <a class="text-blue-600 font-semibold" href="admin-table.php">
       ADMIN
      </a>
     </div>

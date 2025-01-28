@@ -1,7 +1,9 @@
 <?php
 if (isset($_COOKIE['level']) && $_COOKIE['level'] == 'Admin') {
-    include 'admin/views/index.php'; 
+    header("Location: dashboard.php");
+    exit();
 } else {
-    echo 'Hai cuk';
+    header("Location: login.php");
+    exit();
 }
 ?>

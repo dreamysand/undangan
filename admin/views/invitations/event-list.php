@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Invitation List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 font-roboto min-h-screen text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-[#0A2C82] shadow-lg">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a onclick="history.back()" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="text-2xl font-bold text-white text-center">Admin - Invitations</h1>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200" onclick="window.location.href='create.php'">
+                <i class="fas fa-plus mr-2"></i> Tambah Undangan
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php foreach ($result as $acara): ?>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden relative hover:scale-[1.05] transition ease-in-out">
+                    <button class="absolute right-4 top-4 bg-blue-500 opacity-25 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999]" onclick="window.location.href='edit.php?id_acara=<?= $acara['f_id'] ?>'">
+                     <i class="fas fa-plus mr-2">
+                     </i>
+                     Edit Acara
+                    </button>
+                        <div class="aspect-[3/4] relative cursor-pointer group" onclick="window.location.href='<?= $acara['f_file_path'];  ?>'">
+                         <img alt="<?= $acara['f_acara'] ?>" class="w-full h-[80%] object-cover transition-transform duration-300 group-hover:scale-[2]" src="<?= $acara['f_image']; ?>"/>
+                            <div class="p-4 bottom-0 group-hover:bg-white group-hover:bg-opacity-50 transition-transform duration-300 w-full h-auto absolute">
+                              <h2 class="text-xl font-bold mb-2">
+                               <?= $acara['f_acara']; ?>
+                              </h2>
+                              <div class="flex items-center justify-between text-[#0E37E7] text-sm">
+                               <span>
+                                <i class="fas fa-calendar-alt mr-2">
+                                </i>
+                                <?= $acara['f_tanggal_acara'];  ?>
+                               </span>
+                               <span>
+                                <i class="fas fa-map-marker-alt mr-2">
+                                </i>
+                                <a href="<?= $acara['f_alamat'] ?>">
+                                    Klik untuk melihat lokasi
+                                </a>
+                               </span>
+                              </div>
+                            </div>
+                        </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</body>
+</html>
