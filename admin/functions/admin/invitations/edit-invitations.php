@@ -1,5 +1,5 @@
 <?php
-if ($_GET['id_acara']) {
+if (isset($_GET['id_acara'])) {
     $id_Acara = $_GET['id_acara'];
     $table = 't_invitations'; 
     $sql = "SELECT * FROM $table WHERE f_id = :id_acara";
@@ -7,7 +7,7 @@ if ($_GET['id_acara']) {
     $stmt->execute([
         ':id_acara' => $id_Acara
     ]);
-    if ($result = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+    if ($acara = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
         <script>
             console.log("Acara berhasil diambil");

@@ -48,6 +48,7 @@ if (isset($_POST['acara_id']) &&
 	$location_Link_Verified = "https://maps.app.goo.gl/";
 	if (stripos($alamat, $location_Link_Verified) !== false) {
         $QR_Location_Path = $events['f_file_path'].'/asset/'.$kode_unik.'.png';
+        $QR_Location_File = '/asset/'.$kode_unik.'.png';
         echo "$QR_Location_Path, $acara_id, $nama, $no_tel, $email, $kode_unik, $alamat, $instansi";
         $data_QR = "
 			Id Acara : $acara_id\n
@@ -61,7 +62,24 @@ if (isset($_POST['acara_id']) &&
 			
 		QRcode::png($data_QR, $QR_Location_Path);
 		$table = 't_invitations_data';
-		$sql = "INSERT INTO $table (`f_acara_id`, `f_nama_tamu`, `f_kode_unik_tamu`, `f_nomor_telepon`, `f_email_tamu`, `f_alamat`, `f_instansi`, `f_kode_qr`) VALUES (:acara_id,:nama,:kode_unik,:no_tel,:email,:alamat,:instansi,:kode_qr)";
+		$sql = "INSERT 
+				INTO $table 
+				(`f_acara_id`, 
+					`f_nama_tamu`, 
+					`f_kode_unik_tamu`, 
+					`f_nomor_telepon`, 
+					`f_email_tamu`, 
+					`f_alamat`, `f_instansi`, 
+					`f_kode_qr`) 
+				VALUES 
+				(:acara_id,
+					:nama,
+					:kode_unik,
+					:no_tel,
+					:email,
+					:alamat,
+					:instansi,
+					:kode_qr)";
 
 		$stmt = $config->prepare($sql);
 		if ($stmt->execute([
@@ -72,11 +90,13 @@ if (isset($_POST['acara_id']) &&
 			':email'=>$email,
 			':alamat'=>$alamat,
 			':instansi'=>$instansi,
-			':kode_qr'=>$QR_Location_Path
+			':kode_qr'=>$QR_Location_File
 		])) {
 			?>
 			<script>
-				alert("Tamu berhasil ditambah");
+				if (confirm("Tamu berhasil ditambah")) {
+					window.location.href = localStorage.getItem("previousPage");
+				}
 			</script>
 			<?php
 		} else {

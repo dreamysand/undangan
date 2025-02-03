@@ -19,7 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
 						$location_Img = '../'.$acara_Parent_Path.'/'.$asset_Dir.'/';
 						$image = UploadIMG($_FILES['gambar'], $location_Img);
 						if ($image != null) {
-							$sql = "INSERT INTO $table(`f_admin_id`, `f_acara`, `f_alamat`, `f_tanggal_acara`, `f_image`, `f_file_path`) VALUES (:admin_id,:acara,:alamat,:tanggal,:img,:filepath)";
+							$sql = "INSERT 
+									INTO $table
+									(`f_admin_id`, 
+										`f_acara`, 
+										`f_alamat`, 
+										`f_tanggal_acara`, 
+										`f_image`, 
+										`f_file_path`) 
+									VALUES 
+									(:admin_id,
+										:acara,
+										:alamat,
+										:tanggal,
+										:img,
+										:filepath)";
 							$stmt = $config->prepare($sql);	
 							if ($stmt->execute([
 								':admin_id' => $_COOKIE['id'],
@@ -27,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
 								':alamat' => $lokasi,
 								':tanggal' => $tanggal,
 								':img' => $image,
-								':filepath' => $acara_Parent_Path,
+								':filepath' => '../'.$acara_Parent_Path,
 							])) {
 								?>
 								<script>

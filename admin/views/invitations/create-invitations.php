@@ -23,7 +23,7 @@
 
     <div class="container mx-auto p-6">
         <!-- Form Edit Acara -->
-        <form action="update_acara.php" method="POST" enctype="multipart/form-data" class="bg-white text-gray-800 p-6 rounded-lg shadow-lg mt-6">
+        <form action="" method="POST" enctype="multipart/form-data" class="bg-white text-gray-800 p-6 rounded-lg shadow-lg mt-6">
             <div class="mb-4">
                 <label for="event_name" class="block text-sm font-medium text-gray-700">Nama Acara</label>
                 <input type="text" id="event_name" name="acara" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan nama acara">

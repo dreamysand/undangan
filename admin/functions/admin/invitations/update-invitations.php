@@ -19,7 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
                     if ($image != null) {
                         if (file_exists($location_Img.$imageOld)) {
                             if (unlink($location_Img.$imageOld)) {
-                                $sql = "UPDATE `t_invitations` SET `f_admin_id`=:admin_id,`f_acara`=:acara,`f_alamat`=:alamat,`f_tanggal_acara`=:tanggal,`f_image`=:img, `f_file_path`=:file_path WHERE `f_id`=:id_acara";
+                                $sql = "UPDATE 
+                                        `t_invitations` 
+                                        SET 
+                                        `f_admin_id`=:admin_id,
+                                        `f_acara`=:acara,
+                                        `f_alamat`=:alamat,
+                                        `f_tanggal_acara`=:tanggal,
+                                        `f_image`=:img, 
+                                        `f_file_path`=:file_path, 
+                                        `f_admin_id`=:id_admin 
+                                        WHERE 
+                                        `f_id`=:id_acara";
                                 $stmt = $config->prepare($sql);
                                 if ($stmt->execute([
                                     ':admin_id' => $_COOKIE['id'],
@@ -28,19 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
                                     ':tanggal' => $tanggal,
                                     ':img' => $image,
                                     ':file_path' => $acara_Parent_Path,
+                                    ':id_admin' => $_COOKIE['id'],
                                     ':id_acara' => $_GET['id_acara']
                                 ])) {
                                     ?>
                                     <script>
-                                        alert("Acara berhasil ditambahkan");
-                                        window.location.href = "";
+                                        if (confirm("Acara berhasil diedit")) {
+                                            window.location.href = localStorage.getItem("previousPage");
+                                        }
                                     </script>
-                                    <?php   
+                                    <?php
                                 } else {
                                     ?>
                                     <script>
-                                        alert("Acara gagal ditambahkan");
-                                        window.location.href = "undangan.php";
+                                        alert("Acara gagal diedit");
                                     </script>
                                     <?php
                                 }    
@@ -59,7 +71,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
                             <?php
                         }
                     } else {
-                        $sql = "UPDATE `t_invitations` SET `f_admin_id`=:admin_id,`f_acara`=:acara,`f_alamat`=:alamat,`f_tanggal_acara`=:tanggal,`f_image`=:img, `f_file_path`=:file_path WHERE `f_id`=:id_acara";
+                        $sql = "UPDATE 
+                                `t_invitations` 
+                                SET 
+                                `f_admin_id`=:admin_id,
+                                `f_acara`=:acara,
+                                `f_alamat`=:alamat,
+                                `f_tanggal_acara`=:tanggal,
+                                `f_image`=:img, 
+                                `f_file_path`=:file_path, 
+                                `f_admin_id`=:id_admin 
+                                WHERE 
+                                `f_id`=:id_acara";
                         $stmt = $config->prepare($sql); 
                         if ($stmt->execute([
                             ':admin_id' => $_COOKIE['id'],
@@ -68,19 +91,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
                             ':tanggal' => $tanggal,
                             ':img' => $location_Img.$imageOld,
                             ':file_path' => $acara_Parent_Path,
+                            ':id_admin' => $_COOKIE['id'],
                             ':id_acara' => $_GET['id_acara']
                         ])) {
                             ?>
                             <script>
-                                alert("Acara berhasil ditambahkan");
-                                window.location.href = "undangan.php";
+                                if (confirm("Acara berhasil diedit")) {
+                                    window.location.href = localStorage.getItem("previousPage");
+                                }
                             </script>
                             <?php
                         } else {
                             ?>
                             <script>
-                                alert("Acara gagal ditambahkan");
-                                window.location.href = "undangan.php";
+                                alert("Acara gagal diedit");
                             </script>
                             <?php
                         }

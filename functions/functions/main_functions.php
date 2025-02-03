@@ -42,6 +42,25 @@ function UploadIMG($file, $location)
 	}
 }
 
+function DeleteFolder($folderName)
+{
+	if (!is_dir($folderName)) {
+		return false;
+	}
+	$files = array_diff(scandir($folderName), array(".",".."));
+
+	foreach ($files as $file) {
+		$path = $folderName. DIRECTORY_SEPARATOR. $file;
+		if (is_dir($path)) {
+			DeleteFolder($path);
+		} else {
+			unlink($path);
+		}
+	}
+
+	return rmdir($folderName);
+}
+
 function SQLConnectPDO($dsn, $db, $usrname, $pass)
 {
 	if ($config = new PDO('mysql:host='.$dsn.';dbname='.$db, $usrname, $pass)) {
@@ -81,7 +100,7 @@ function SelectAccount($email)
 	$stmt = $config->prepare("SELECT * FROM $table WHERE f_email=:email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     return $result;
 }

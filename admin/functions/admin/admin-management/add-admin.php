@@ -16,12 +16,26 @@ if (isset($_POST['username']) &&
 			':email'=>$email,
 			':password'=>$hashed_Password
 		])) {
-			echo 'Admin berhasil ditambahkan';
+			?>
+			<script>
+				if (confirm("Admin berhasil ditambahkan")) {
+					window.location.href = localStorage.getItem("previousPage");
+				}
+			</script>
+			<?php
 		} else {
-			echo 'Admin gagal ditambahkan';
+			?>
+			<script>
+				alert("Admin gagal ditambahkan");
+			</script>
+			<?php
 		}
 	} else {
-		echo 'Password gagal dihash';
+		?>
+		<script>
+			alert("Password gagal di hash");
+		</script>
+		<?php
 	}
 	$stmt = null;
 }

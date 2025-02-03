@@ -1,9 +1,9 @@
 <?php
 session_start();
 if (isset($_COOKIE['id']) && isset($_COOKIE['level']) && $_COOKIE['level'] == 'Admin') {
-	require 'views/dashboard.php';
+    require 'functions/logout.php';
 } else {
-	header('Location: ../');
-	exit();
+    header('Location: ../');
+    exit();
 }
 ?>

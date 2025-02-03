@@ -1,0 +1,17 @@
+ini yang ada di depan semua ya, belum masuk ke folder admin dan lainnya :
+1. signin.php
+2. membuat acara.php
+3. phpqrcode yang zipnya
+4. tamu undangan.php
+5. undnagan online zipnya
+6. undnagan.php
+7, undnaganform.php
+8. acara.php
+9. dashboardadmin.php
+10. db.sql
+11. edit_acara.php
+
+folder admin :
+1. add-guest.php
+2. edit-guest.php
+

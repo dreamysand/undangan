@@ -1,26 +1,26 @@
 <?php
-if (isset($_GET['id_guest'])) {
-    $id_Guest = $_GET['id_guest'];
+if (isset($_GET['id_event'])) {
+    $id_Event = $_GET['id_event'];
     $table_guest = 't_invitations_data';
-    $table_event = 't_invitations';
+    $table_event = 't_invitations'; 
     $sql = "SELECT guest.*, event.f_file_path 
             FROM $table_guest guest
             INNER JOIN $table_event event ON guest.f_acara_id = event.f_id
-            WHERE guest.f_id = :id_guest";
-    
+            WHERE guest.f_acara_id = :id_event";
     $stmt = $config->prepare($sql);
-    $stmt->execute([':id_guest' => $id_Guest]);
-
-    if ($guest = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $stmt->execute([
+        ':id_event' => $id_Event
+    ]);
+    if ($result = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
         ?>
         <script>
-            console.log("Data tamu dan acara berhasil diambil");
+            console.log("Tamu berhasil diambil");
         </script>
         <?php
     } else {
         ?>
         <script>
-            console.log("Data tidak ditemukan");
+            console.log("Tamu gagal diambil");
         </script>
         <?php
     }

@@ -20,6 +20,7 @@
                 <input class="mr-2" type="checkbox" id="remember" name="remember">
                 <label class="text-sm text-blue-900" for="remember">Remember Me</label>
             </div>
+            <a href="forgot-password.php">Forgot Password</a>
             <div class="text-center">
                 <button class="bg-blue-900 text-white font-bold py-2 px-4 rounded-full w-full" type="submit">LOGIN</button>
             </div>

@@ -5,6 +5,9 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['level']) && $_COOKIE['level'] == 'A
 	if (isset($_GET['admin'])) {
 		require 'functions/admin/admin-management/add-admin.php';
 		require 'views/admin-management/add-admin.php';
+	} elseif (isset($_GET['id_event'])) {
+		require 'functions/admin/guest/add-guest.php';
+		require 'views/guest/add-guest.php';
 	} else {
 		require 'functions/admin/invitations/create-invitations.php';
 		require 'views/invitations/create-invitations.php';

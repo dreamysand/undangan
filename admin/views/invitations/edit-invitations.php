@@ -23,8 +23,7 @@
 
     <div class="container mx-auto p-6">
         <!-- Form Edit Acara -->
-        <form action="update_acara.php" method="POST" enctype="multipart/form-data" class="bg-white text-gray-800 p-6 rounded-lg shadow-lg mt-6">
-            <?php foreach ($result as $acara): ?>
+        <form action="" method="POST" enctype="multipart/form-data" class="bg-white text-gray-800 p-6 rounded-lg shadow-lg mt-6">
             <div class="mb-4">
                 <label for="event_name" class="block text-sm font-medium text-gray-700">Nama Acara</label>
                 <input type="text" id="event_name" value="<?= $acara['f_acara'];?>" name="acara" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan nama acara">
@@ -49,26 +48,7 @@
                     <i class="fas fa-save mr-2"></i>Simpan Perubahan
                 </button>
             </div>
-            <?php endforeach ?>
         </form>
-        <script>
-            const imageInput = document.getElementById('imageInput');
-            const imageView = document.getElementById('imageView');
-            imageInput.addEventListener('change', function (event) {
-                const image = event.target.files[0];
-                if (image) {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        imageView.src = e.target.result;
-                    }
-
-                    reader.readAsDataURL(image);
-                } else {
-                    console.log('Error')
-                }
-            })
-        </script>
     </div>
 </body>
 </html>

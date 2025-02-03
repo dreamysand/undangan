@@ -1,8 +1,9 @@
 <?php
+session_start();
 if (isset($_COOKIE['level']) && $_COOKIE['level'] == 'Admin') {
     header('Location: admin');
     exit();
 } else {
-    echo 'Hai cuk';
+    include 'views/dashboard.php';
 }
 ?>
