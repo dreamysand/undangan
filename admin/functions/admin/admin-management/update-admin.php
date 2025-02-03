@@ -8,7 +8,7 @@ if (isset($_POST['username']) &&
 	$id_admin = $_GET['id_admin'];
 	$table = 't_admin';
 
-	if (is_null($_POST['password'])) {
+	if (!is_null($_POST['password'])) {
 		$password = $_POST['password'];
 		if ($hashed_Password = password_hash($password, PASSWORD_DEFAULT)) {
 			$sql = "UPDATE $table 
