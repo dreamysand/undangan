@@ -9,13 +9,17 @@ if ($_GET['id_admin']) {
     ])) {
         ?>
         <script>
-            console.log("Admin berhasil dihapus");
+            if (confirm("Admin berhasil dihapus")) {
+                window.location.href = localStorage.getItem("previousPage");
+            }
         </script>
         <?php
     } else {
         ?>
         <script>
-            console.log("Admin gagal dihapus");
+            if (confirm("Admin gagal dihapus")) {
+                window.location.href = localStorage.getItem("previousPage");
+            }
         </script>
         <?php
     }

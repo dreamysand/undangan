@@ -7,7 +7,7 @@ if ($_GET['id_admin']) {
     $stmt->execute([
         ':id_admin' => $id_Admin
     ]);
-    if ($result = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+    if ($admin = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
         <script>
             console.log("Admin berhasil diambil");

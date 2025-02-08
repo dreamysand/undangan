@@ -55,7 +55,6 @@
     </div>
 
     <script>
-        localStorage.setItem("previousPage", window.location.href);
         function confirmDelete(id) {
             if (confirm("Apakah Anda yakin ingin menghapus tamu ini?")) {
                 window.location.href = 'delete.php?id_guest=' + id;

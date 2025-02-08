@@ -45,8 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
 							])) {
 								?>
 								<script>
-									alert("Acara berhasil ditambahkan");
-									window.location.href = "undangan.php";
+									if (confirm("Acara berhasil ditambah")) {
+										window.location.href = localStorage.getItem("previousPage");
+									}
 								</script>
 								<?php
 							} else {
