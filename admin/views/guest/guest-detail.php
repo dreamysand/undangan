@@ -12,7 +12,7 @@
     <!-- Navbar -->
     <nav class="bg-[#0A2C82] shadow-lg">
         <div class="container mx-auto flex justify-between items-center p-4">
-            <a onclick="history.back()" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
+            <a onclick="window.location.href = localStorage.getItem('previousPage')" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <h1 class="text-2xl font-bold text-white text-center">Guest Detail</h1>

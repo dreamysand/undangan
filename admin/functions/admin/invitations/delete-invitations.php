@@ -32,14 +32,14 @@ if (isset($_GET['id_acara'])) {
                 ?>
                 <script>
                     alert("Acara berhasil dihapus");
-                    window.location.href = "event-list.php";
+                    window.location.href = localStorage.getItem("previousPage");
                 </script>
                 <?php
             } else {
                 ?>
                 <script>
                     alert("Acara gagal dihapus");
-                    window.location.href = "event-list.php";
+                    window.location.href = localStorage.getItem("previousPage");
                 </script>
                 <?php
             }
@@ -47,7 +47,7 @@ if (isset($_GET['id_acara'])) {
             ?>
             <script>
                 alert("Folder gagal dihapus");
-                window.location.href = "event-list.php";
+                window.location.href = localStorage.getItem("previousPage");
             </script>
             <?php
         }
@@ -55,7 +55,7 @@ if (isset($_GET['id_acara'])) {
         ?>
         <script>
             alert("Folder tidak ditemukan");
-            window.location.href = "event-list.php";
+            window.location.href = localStorage.getItem("previousPage");
         </script>
         <?php
     }

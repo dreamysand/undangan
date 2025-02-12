@@ -11,7 +11,7 @@
     <!-- Navbar -->
     <nav class="bg-[#0A2C82] shadow-lg">
         <div class="container mx-auto flex justify-between items-center p-4">
-        	<a onclick="history.back()" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
+        	<a onclick="window.location.href='../'" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <h1 class="text-2xl font-bold text-white">Admin - Admin List</h1>
@@ -30,6 +30,7 @@
                         <th class="px-4 py-2 font-medium">Username</th>
                         <th class="px-4 py-2 font-medium">Email</th>
                         <th class="px-4 py-2 font-medium">Password</th>
+                        <th class="px-4 py-2 font-medium">Status</th>
                         <th class="px-4 py-2 font-medium">Action</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@
                             <td class="px-4 py-2"><?= $admin['f_username'] ?></td>
                             <td class="px-4 py-2"><?= $admin['f_email'] ?></td>
                             <td class="px-4 py-2"><?= $admin['f_password'] ?></td>
+                            <td class="px-4 py-2"><?= $admin['f_status'] ?></td>
                             <td class="px-4 py-2">
                             	<a href="edit.php?id_admin=<?= $admin['f_id'] ?>" class="bg-[#82EA4A] p-1 hover:bg-opacity-75 rounded-md mr-5">
                             		<i class="fas fa-pen-square mr-2 mb-[1rem]"></i> Edit Admin
