@@ -31,16 +31,22 @@
                         <div class="aspect-[4/4] relative cursor-pointer group guestInfo" id="guestInfo<?=$tamu['f_id'] ?>" onclick="window.location.href='guest-detail.php?id_guest=<?=$tamu['f_id'] ?>'">
                          <img alt="<?= $tamu['f_nama_tamu'] ?>" class="mx-auto my-auto w-[80%] h-[80%] object-cover transition-transform duration-300" src="<?=$tamu['f_file_path'].$tamu['f_kode_qr']; ?>"/>
                             <div class="flex justify-between items-center p-4 bottom-0 group-hover:bg-white group-hover:bg-opacity-50 transition-transform duration-300 w-full h-auto absolute">
-                              <h2 class="text-xl font-semibold">
-                                <?= $tamu['f_kode_unik_tamu']; ?>
-                                /
-                                <span class="font-semibold">
-                                    <?= $tamu['f_nama_tamu']; ?>
-                                </span>
-                              </h2>
+                                <div class="w-[60%]">
+                                  <h2 class="text-xl font-semibold">
+                                    <?= $tamu['f_kode_unik_tamu']; ?>
+                                    /
+                                    <span class="font-semibold">
+                                        <?= $tamu['f_nama_tamu']; ?>
+                                    </span>
+                                  </h2>
+                                </div>
                               <div>
                                 <button class="bg-green-500 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 z-[999] mr-2" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="window.location.href='edit.php?id_guest=<?= $tamu['f_id'] ?>'">
                                      <i class="fas fa-pen-square">
+                                     </i>
+                                </button>
+                                <button class="bg-blue-500 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999] mr-2" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="window.location.href='send-message.php?nomor_telepon=<?= $tamu['f_nomor_telepon'] ?>'">
+                                     <i class="fas fa-paper-plane">
                                      </i>
                                 </button>
                                 <button class="bg-red-500 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 z-[999]" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="confirmDelete(<?= $tamu['f_id'] ?>, <?= $tamu['f_acara_id'] ?>)">

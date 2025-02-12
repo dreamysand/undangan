@@ -47,6 +47,9 @@
                 <button class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition duration-200" onclick="window.location.href='edit.php?id_guest=<?= $guest['f_id'] ?>'">
                     <i class="fas fa-edit mr-2"></i> Edit
                 </button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200" onclick="window.location.href='edit.php?id_guest=<?= $guest['f_id'] ?>'">
+                    <i class="fas fa-paper-plane mr-2"></i> Kirim Undangan
+                </button>
                 <button class="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200" onclick="confirmDelete(<?= $guest['f_id'] ?>)">
                     <i class="fas fa-trash-alt mr-2"></i> Hapus
                 </button>
