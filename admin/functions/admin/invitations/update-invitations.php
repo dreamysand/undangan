@@ -11,117 +11,127 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acara']) && isset($_PO
 	if (stripos($lokasi, $location_Link_Verified) !== false) {
         if (file_exists($file_Path_Old)) {
             $acara_Parent_Path = '../'.strtolower(str_replace(" ", "-",$acara)); 
-            if (rename($file_Path_Old, $acara_Parent_Path)) {
-                if (isset($_FILES['gambar'])) {
-                    $asset_Dir = 'asset';
-                    $location_Img = $acara_Parent_Path.'/'.$asset_Dir.'/';
-                    $image = UploadIMG($_FILES['gambar'], $location_Img);
-                    if ($image != null) {
-                        if (file_exists($location_Img.$imageOld)) {
-                            if (unlink($location_Img.$imageOld)) {
-                                $sql = "UPDATE 
-                                        `t_invitations` 
-                                        SET 
-                                        `f_admin_id`=:admin_id,
-                                        `f_acara`=:acara,
-                                        `f_alamat`=:alamat,
-                                        `f_tanggal_acara`=:tanggal,
-                                        `f_image`=:img, 
-                                        `f_file_path`=:file_path, 
-                                        `f_admin_id`=:id_admin 
-                                        WHERE 
-                                        `f_id`=:id_acara";
-                                $stmt = $config->prepare($sql);
-                                if ($stmt->execute([
-                                    ':admin_id' => $_COOKIE['id'],
-                                    ':acara' => $acara,
-                                    ':alamat' => $lokasi,
-                                    ':tanggal' => $tanggal,
-                                    ':img' => $image,
-                                    ':file_path' => $acara_Parent_Path,
-                                    ':id_admin' => $_COOKIE['id'],
-                                    ':id_acara' => $_GET['id_acara']
-                                ])) {
-                                    ?>
-                                    <script>
-                                        if (confirm("Acara berhasil diedit")) {
-                                            window.location.href = localStorage.getItem("previousPage");
-                                        }
-                                    </script>
-                                    <?php
+            if (is_writable($file_Path_Old)) {
+                exec("sudo chown -R www-data:www-data " . escapeshellarg($file_Path_Old));
+                exec("sudo chmod -R 775 " . escapeshellarg($file_Path_Old));
+                if (rename($file_Path_Old, $acara_Parent_Path)) {
+                    if (isset($_FILES['gambar'])) {
+                        $asset_Dir = 'asset';
+                        $location_Img = $acara_Parent_Path.'/'.$asset_Dir.'/';
+                        $image = UploadIMG($_FILES['gambar'], $location_Img);
+                        if ($image != null) {
+                            if (file_exists($location_Img.$imageOld)) {
+                                if (unlink($location_Img.$imageOld)) {
+                                    $sql = "UPDATE 
+                                            `t_invitations` 
+                                            SET 
+                                            `f_admin_id`=:admin_id,
+                                            `f_acara`=:acara,
+                                            `f_alamat`=:alamat,
+                                            `f_tanggal_acara`=:tanggal,
+                                            `f_image`=:img, 
+                                            `f_file_path`=:file_path, 
+                                            `f_admin_id`=:id_admin 
+                                            WHERE 
+                                            `f_id`=:id_acara";
+                                    $stmt = $config->prepare($sql);
+                                    if ($stmt->execute([
+                                        ':admin_id' => $_COOKIE['id'],
+                                        ':acara' => $acara,
+                                        ':alamat' => $lokasi,
+                                        ':tanggal' => $tanggal,
+                                        ':img' => $image,
+                                        ':file_path' => $acara_Parent_Path,
+                                        ':id_admin' => $_COOKIE['id'],
+                                        ':id_acara' => $_GET['id_acara']
+                                    ])) {
+                                        ?>
+                                        <script>
+                                            if (confirm("Acara berhasil diedit")) {
+                                                window.location.href = localStorage.getItem("previousPage");
+                                            }
+                                        </script>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <script>
+                                            alert("Acara gagal diedit");
+                                        </script>
+                                        <?php
+                                    }    
                                 } else {
                                     ?>
                                     <script>
-                                        alert("Acara gagal diedit");
+                                        alert("Gagal menghapus gambar lama");
                                     </script>
                                     <?php
-                                }    
+                                }
                             } else {
                                 ?>
                                 <script>
-                                    alert("Gagal menghapus gambar lama");
+                                    alert("File yang dimaksud tidak ditemukan");
                                 </script>
                                 <?php
                             }
                         } else {
-                            ?>
-                            <script>
-                                alert("File yang dimaksud tidak ditemukan");
-                            </script>
-                            <?php
+                            $sql = "UPDATE 
+                                    `t_invitations` 
+                                    SET 
+                                    `f_admin_id`=:admin_id,
+                                    `f_acara`=:acara,
+                                    `f_alamat`=:alamat,
+                                    `f_tanggal_acara`=:tanggal,
+                                    `f_image`=:img, 
+                                    `f_file_path`=:file_path, 
+                                    `f_admin_id`=:id_admin 
+                                    WHERE 
+                                    `f_id`=:id_acara";
+                            $stmt = $config->prepare($sql); 
+                            if ($stmt->execute([
+                                ':admin_id' => $_COOKIE['id'],
+                                ':acara' => $acara,
+                                ':alamat' => $lokasi,
+                                ':tanggal' => $tanggal,
+                                ':img' => $location_Img.$imageOld,
+                                ':file_path' => $acara_Parent_Path,
+                                ':id_admin' => $_COOKIE['id'],
+                                ':id_acara' => $_GET['id_acara']
+                            ])) {
+                                ?>
+                                <script>
+                                    if (confirm("Acara berhasil diedit")) {
+                                        window.location.href = localStorage.getItem("previousPage");
+                                    }
+                                </script>
+                                <?php
+                            } else {
+                                ?>
+                                <script>
+                                    alert("Acara gagal diedit");
+                                </script>
+                                <?php
+                            }
                         }
+                        
                     } else {
-                        $sql = "UPDATE 
-                                `t_invitations` 
-                                SET 
-                                `f_admin_id`=:admin_id,
-                                `f_acara`=:acara,
-                                `f_alamat`=:alamat,
-                                `f_tanggal_acara`=:tanggal,
-                                `f_image`=:img, 
-                                `f_file_path`=:file_path, 
-                                `f_admin_id`=:id_admin 
-                                WHERE 
-                                `f_id`=:id_acara";
-                        $stmt = $config->prepare($sql); 
-                        if ($stmt->execute([
-                            ':admin_id' => $_COOKIE['id'],
-                            ':acara' => $acara,
-                            ':alamat' => $lokasi,
-                            ':tanggal' => $tanggal,
-                            ':img' => $location_Img.$imageOld,
-                            ':file_path' => $acara_Parent_Path,
-                            ':id_admin' => $_COOKIE['id'],
-                            ':id_acara' => $_GET['id_acara']
-                        ])) {
-                            ?>
-                            <script>
-                                if (confirm("Acara berhasil diedit")) {
-                                    window.location.href = localStorage.getItem("previousPage");
-                                }
-                            </script>
-                            <?php
-                        } else {
-                            ?>
-                            <script>
-                                alert("Acara gagal diedit");
-                            </script>
-                            <?php
-                        }
+                        ?>
+                        <script>
+                            alert("Gambar gagal diatur");
+                            window.location.href = "undangan.php";
+                        </script>
+                        <?php
                     }
-                    
                 } else {
                     ?>
                     <script>
-                        alert("Gambar gagal diatur");
-                        window.location.href = "undangan.php";
+                        alert("Folder gagal diperbarui");
                     </script>
                     <?php
                 }
             } else {
                 ?>
                 <script>
-                    alert("Folder gagal diperbarui");
+                    alert("Folder tidak bisa di rubah");
                 </script>
                 <?php
             }

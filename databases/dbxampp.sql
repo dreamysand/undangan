@@ -16,7 +16,7 @@
 
 
 -- Membuang struktur basisdata untuk undangan_main
-CREATE DATABASE IF NOT EXISTS `undangan_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `undangan_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `undangan_main`;
 
 -- membuang struktur untuk table undangan_main.t_admin
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `t_admin` (
   `f_status` enum('Aktif','Nonaktif') NOT NULL DEFAULT 'Nonaktif',
   PRIMARY KEY (`f_id`),
   UNIQUE KEY `f_email` (`f_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Membuang data untuk tabel undangan_main.t_admin: ~3 rows (lebih kurang)
 INSERT INTO `t_admin` (`f_id`, `f_username`, `f_email`, `f_password`, `f_status`) VALUES
@@ -43,12 +43,12 @@ CREATE TABLE IF NOT EXISTS `t_invitations` (
   `f_acara` varchar(100) NOT NULL,
   `f_alamat` varchar(100) NOT NULL,
   `f_tanggal_acara` date NOT NULL,
-  `f_image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_general_ci NOT NULL,
+  `f_image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `f_file_path` varchar(100) NOT NULL,
   PRIMARY KEY (`f_id`),
   KEY `FK_t_invitations_t_admin` (`f_admin_id`),
   CONSTRAINT `FK_t_invitations_t_admin` FOREIGN KEY (`f_admin_id`) REFERENCES `t_admin` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Membuang data untuk tabel undangan_main.t_invitations: ~2 rows (lebih kurang)
 INSERT INTO `t_invitations` (`f_id`, `f_admin_id`, `f_acara`, `f_alamat`, `f_tanggal_acara`, `f_image`, `f_file_path`) VALUES
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `t_invitations_data` (
   UNIQUE KEY `f_kode_qr` (`f_kode_qr`),
   KEY `FK_t_invitations_data_t_invitations` (`f_acara_id`),
   CONSTRAINT `FK_t_invitations_data_t_invitations` FOREIGN KEY (`f_acara_id`) REFERENCES `t_invitations` (`f_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Membuang data untuk tabel undangan_main.t_invitations_data: ~2 rows (lebih kurang)
 INSERT INTO `t_invitations_data` (`f_id`, `f_acara_id`, `f_nama_tamu`, `f_kode_unik_tamu`, `f_nomor_telepon`, `f_email_tamu`, `f_alamat`, `f_instansi`, `f_kode_qr`) VALUES
