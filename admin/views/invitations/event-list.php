@@ -37,11 +37,18 @@
                          Hapus Acara
                         </button>
                     </div>
-                    <button class="absolute left-4 top-4 bg-blue-500 opacity-25 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999]" onclick="window.location.href='guest-list.php?id_event=<?= $acara['f_id'] ?>'">
-                     <i class="fas fa-address-book mr-2">
-                     </i>
-                     Daftar Tamu
-                    </button>
+                    <div class="absolute left-4 top-4 flex flex-col">
+                        <button class="bg-blue-500 opacity-25 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg mb-2 shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999]" onclick="window.location.href='guest-list.php?id_event=<?= $acara['f_id'] ?>'">
+                         <i class="fas fa-address-book mr-2">
+                         </i>
+                         Daftar Tamu
+                        </button>
+                        <button class="bg-blue-500 opacity-25 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999]" onclick="window.location.href='gallery.php?id_acara=<?= $acara['f_id'] ?>'">
+                         <i class="fas fa-images mr-2">
+                         </i>
+                         Galeri Acara
+                        </button>
+                    </div>
                         <div class="aspect-[3/4] relative cursor-pointer group" onclick="window.location.href='<?= $acara['f_file_path'];?>'">
                          <img alt="<?= $acara['f_acara'] ?>" class="w-full h-[80%] object-cover transition-transform duration-300 group-hover:scale-[2]" src="<?= $acara['f_image']; ?>"/>
                             <div class="p-4 bottom-0 group-hover:bg-white group-hover:bg-opacity-50 transition-transform duration-300 w-full h-auto absolute">

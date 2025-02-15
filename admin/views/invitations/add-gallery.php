@@ -17,7 +17,7 @@
                 <span>Kembali</span>
             </a>
             <!-- Judul Navbar -->
-            <h1 class="text-2xl font-bold mx-auto text-white">Tambah Acara</h1>
+            <h1 class="text-2xl font-bold mx-auto text-white">Tambah Galeri Acara</h1>
         </div>
     </nav>
 
@@ -25,28 +25,8 @@
         <!-- Form Edit Acara -->
         <form action="" method="POST" enctype="multipart/form-data" class="bg-white text-gray-800 p-6 rounded-lg shadow-lg mt-6">
             <div class="mb-4">
-                <label for="event_name" class="block text-sm font-medium text-gray-700">Nama Acara</label>
-                <input type="text" id="event_name" name="acara" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan nama acara">
-            </div>
-            <div class="mb-4">
-                <label for="event_date" class="block text-sm font-medium text-gray-700">Tanggal Acara</label>
-                <input type="date" id="event_date" name="tanggal" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="event_finish" class="block text-sm font-medium text-gray-700">Tanggal Acara Berakhir</label>
-                <input type="date" id="event_finish" name="tanggal_berakhir" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-4">
-                <label for="event_location" class="block text-sm font-medium text-gray-700">Lokasi Acara</label>
-                <input type="text" id="event_location" name="lokasi" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan link lokasi acara">
-            </div>
-            <div class="mb-4">
-                <label for="event_embed_location" class="block text-sm font-medium text-gray-700">Embed Lokasi Acara</label>
-                <input type="text" id="event_embed_location" name="embed_lokasi" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan link embed lokasi acara">
-            </div>
-            <div class="mb-4">
                 <label for="event_image" class="block text-sm font-medium text-gray-700">Unggah Gambar Acara</label>
-                <input type="file" id="event_image" name="gambar" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+                <input type="file" id="event_image" multiple name="gambar[]" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
                 <p class="text-sm text-gray-500 mt-2">Format yang diperbolehkan: JPG, PNG, JPEG, GIF, WEBP, JFIF, dan SVG. Maksimal ukuran: 5MB.</p>
             </div>
             <div class="flex justify-end">

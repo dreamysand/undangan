@@ -16,7 +16,7 @@ Jangan lewatkan kesempatan emas untuk menemukan karier impian Anda di *Job Fair 
 
 Temui berbagai perusahaan terkemuka dan raih peluang karier terbaik!  
 👉 Klik link di bawah ini untuk informasi lebih detail:  
-ultramsg.com 
+
 
 Siapkan CV terbaik Anda dan jangan sampai ketinggalan!  
 Sampai jumpa di Job Fair 2025!  

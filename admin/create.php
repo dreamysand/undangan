@@ -8,6 +8,9 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['level']) && $_COOKIE['level'] == 'A
 	} elseif (isset($_GET['id_event'])) {
 		require 'functions/admin/guest/add-guest.php';
 		require 'views/guest/add-guest.php';
+	} elseif (isset($_GET['gallery']) && isset($_GET['id_acara'])) {
+		require 'functions/admin/invitations/add-gallery.php';
+		require 'views/invitations/add-gallery.php';
 	} else {
 		require 'functions/admin/invitations/create-invitations.php';
 		require 'views/invitations/create-invitations.php';

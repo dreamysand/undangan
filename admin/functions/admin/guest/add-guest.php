@@ -55,7 +55,6 @@ if (isset($_POST['acara_id']) &&
 			<?php
 		} else {
 			$QR_Location_Path = $events['f_file_path'].'/asset/'.$kode_unik.'.png';
-	        $QR_Location_File = '/asset/'.$kode_unik.'.png';
 	        echo "$QR_Location_Path, $acara_id, $nama, $no_tel, $email, $kode_unik, $alamat, $instansi";
 	        $data_QR = "
 				Id Acara : $acara_id\n
@@ -97,7 +96,7 @@ if (isset($_POST['acara_id']) &&
 				':email'=>$email,
 				':alamat'=>$alamat,
 				':instansi'=>$instansi,
-				':kode_qr'=>$QR_Location_File
+				':kode_qr'=>$QR_Location_Path
 			])) {
 				?>
 				<script>

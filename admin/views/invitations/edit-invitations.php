@@ -34,8 +34,16 @@
                 <input type="date" id="event_date" value="<?= $acara['f_tanggal_acara'];?>" name="tanggal" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
             </div>
             <div class="mb-4">
+                <label for="event_finish" class="block text-sm font-medium text-gray-700">Tanggal Acara Berakhir</label>
+                <input type="date" id="event_finish" value="<?= $acara['f_tanggal_acara_berakhir'];?>" name="tanggal_berakhir" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="mb-4">
                 <label for="event_location" class="block text-sm font-medium text-gray-700">Lokasi Acara</label>
                 <input type="text" id="event_location" value="<?= $acara['f_alamat'];?>" name="lokasi" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan lokasi acara">
+            </div>
+            <div class="mb-4">
+                <label for="event_embed_location" class="block text-sm font-medium text-gray-700">Embed Lokasi Acara</label>
+                <input type="text" id="event_embed_location" value="<?= $acara['f_embed_alamat'];?>" name="embed_lokasi" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan link embed lokasi acara">
             </div>
             <input type="text" value="<?= str_replace("../".strtolower(str_replace(" ", "-",$acara['f_acara']))."/asset/", "", $acara['f_image']);?>" name="imageOld" hidden>
             <div class="mb-4">

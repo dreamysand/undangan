@@ -42,6 +42,47 @@ function UploadIMG($file, $location)
 	}
 }
 
+function UploadIMGS($file, $location)
+{
+	$images = [];
+	foreach ($file['name'] as $index => $name) {
+		if (isset($file)) {
+			if ($file['error'][$index] == 0) {
+				$allowed_Ext = [
+					'jpg',
+					'png',
+					'jpeg',
+					'gif',
+					'jfif',
+					'webp',
+					'svg'
+				];
+				$target_Dir = $location;
+				$target_File = $target_Dir . $name;
+				$img_Ext_Info = new SplFileInfo($name);
+				$img_Ext = $img_Ext_Info->getExtension();
+
+				if (in_array($img_Ext, $allowed_Ext)) {
+					if (move_uploaded_file($file['tmp_name'][$index], $target_File)) {
+						$images[] = $target_File;
+					} else {
+						?>
+						<script>
+							console.log('Gambar gagal diupload');
+						</script>
+						<?php					}
+				} else {
+					?>
+					<script>
+						console.log('Ekstensi tidak didukung');
+					</script>
+					<?php				}
+			}
+		}		
+	}
+	return $images;
+}
+
 function DeleteFolder($folderName)
 {
 	if (!is_dir($folderName)) {
