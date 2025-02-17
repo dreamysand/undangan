@@ -20,9 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
 		$asset_Dir = 'asset';
 		$file_path = $result['f_file_path'];
 		$location_Img = "/$asset_Dir/";
-		$images = UploadIMGS($_FILES['gambar'], $location_Img);
+		$path_Img = "$file_path/$asset_Dir/";
+		$images = UploadIMGS($_FILES['gambar'], $path_Img);
 		if (!empty($images)) {
 			foreach ($images as $image) {
+				$image = str_replace("../", "", $image);
+				$image = explode("/", trim($image, "/"));
+				$image = $location_Img.$image[2];
 				$sql = "INSERT 
 						INTO $table_galeri
 						( `f_id_acara`, 

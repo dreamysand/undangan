@@ -23,8 +23,28 @@ if (isset($_GET['id_image'])) {
     }
     $stmt = null;
     $img_path = $image['f_image'];
-    if (file_exists($img_path)) {
-    	if (unlink($img_path)) {
+    $id_acara = $image['f_id_acara'];
+    $table_invitations = 't_invitations';
+    $sql = "SELECT * FROM $table_invitations WHERE f_id = :id_acara";
+    $stmt = $config->prepare($sql);
+    $stmt->execute([
+        ':id_acara' => $id_acara
+    ]);
+    if ($acara = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        <script>
+            console.log("Acara berhasil diambil");
+        </script>
+        <?php
+    } else {
+        ?>
+        <script>
+            console.log("Acara gagal diambil");
+        </script>
+        <?php
+    }
+    if (file_exists($acara['f_file_path'].$img_path)) {
+    	if (unlink($acara['f_file_path'].$img_path)) {
     		$sql = "DELETE FROM $table WHERE f_id = :id_image";
             $stmt = $config->prepare($sql);
             if ($stmt->execute([
@@ -45,10 +65,20 @@ if (isset($_GET['id_image'])) {
                 <?php
             }
     	} else {
-
+            ?>
+            <script>
+                alert("File Gambar gagal dihapus");
+                window.location.href = localStorage.getItem("previousPage");
+            </script>
+            <?php
     	}
     } else {
-
+        ?>
+        <script>
+            alert("Path tidak ditemukan");
+            window.location.href = localStorage.getItem("previousPage");
+        </script>
+        <?php
     }
 }
 ?>
