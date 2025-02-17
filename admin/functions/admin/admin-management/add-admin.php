@@ -8,6 +8,29 @@ if (isset($_POST['username']) &&
 	$password = $_POST['password'];
 	$table = 't_admin';
 
+	$sql = "
+    SELECT
+    COUNT(*)
+    FROM $table
+    WHERE 
+    `f_email_tamu` = :email
+    ";
+
+    $stmt = $config->prepare($sql);
+    $stmt->execute([
+		':email'=>$email
+    ]);
+    $result = $stmt->fetchColumn();
+    if ($result > 0) {
+    	?>
+		<script>
+			alert("Tidak boleh ada email yang sama.");
+		</script>
+		<?php
+		exit();
+    }
+
+    $stmt = null;
 	if ($hashed_Password = password_hash($password, PASSWORD_DEFAULT)) {
 		$sql = "INSERT INTO $table(`f_username`, `f_email`, `f_password`) VALUES (:username,:email,:password)";
 		$stmt = $config->prepare($sql);

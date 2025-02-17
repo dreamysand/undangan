@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
 	if (isset($_FILES['gambar'])) {
 		$asset_Dir = 'asset';
 		$file_path = $result['f_file_path'];
-		$location_Img = "$file_path/$asset_Dir";
+		$location_Img = "/$asset_Dir/";
 		$images = UploadIMGS($_FILES['gambar'], $location_Img);
 		if (!empty($images)) {
 			foreach ($images as $image) {

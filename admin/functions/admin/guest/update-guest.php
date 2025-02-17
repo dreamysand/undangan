@@ -49,11 +49,42 @@ if (isset($_POST['acara_id']) &&
 	}
 	$stmt = null;
 
+	$table = 't_invitations_data';
+	$sql = "
+    SELECT
+    COUNT(*)
+    FROM $table
+    WHERE 
+    `f_acara_id` = :id_acara
+    AND
+    `f_email_tamu` = :email
+    AND
+    `f_id` != :id_guest
+    ";
+
+    $stmt = $config->prepare($sql);
+    $stmt->execute([
+		':id_acara'=>$acara_id,
+		':email'=>$email,
+		':id_guest'=>$id_guest
+    ]);
+    $result = $stmt->fetchColumn();
+    if ($result > 0) {
+    	?>
+		<script>
+			alert("Tidak boleh ada email yang sama di acara yang sama.");
+		</script>
+		<?php
+    }
+    $stmt = null;
+
 	$location_Link_Verified = "https://maps.app.goo.gl/";
 	if (stripos($alamat, $location_Link_Verified) !== false) {
 		if (file_exists($kode_qr)) {
 			if (unlink($kode_qr)) {
 		        $QR_Location_Path = $events['f_file_path'].'/asset/'.$kode_unik.'.png';
+				$QR_Location_File = '/asset/'.$kode_unik.'.png';
+
 		        $data_QR = "
 					Id Acara : $acara_id\n
 					Nama : $nama\n
@@ -85,7 +116,7 @@ if (isset($_POST['acara_id']) &&
 					':email'=>$email,
 					':alamat'=>$alamat,
 					':instansi'=>$instansi,
-					':kode_qr'=>$QR_Location_Path,
+					':kode_qr'=>$QR_Location_File,
 					':id_guest'=>$id_guest
 				])) {
 					?>

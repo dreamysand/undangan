@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-blue-100">
-    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-blue-100 min-h-screen">
+    <div class="bg-white rounded-lg shadow-lg p-8 w-[80%] lg:w-[40%]">
         <h2 class="text-2xl font-bold text-center text-blue-900 mb-8">
             Forgot Password
         </h2>

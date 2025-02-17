@@ -9,19 +9,17 @@
 </head>
 <body class="bg-gray-100 font-roboto min-h-screen text-gray-800">
     <!-- Navbar -->
-    <nav class="bg-[#0A2C82] shadow-lg">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <a onclick="window.location.href='../'" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <h1 class="text-2xl font-bold text-white text-center">Admin - Guest List</h1>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200" onclick="window.location.href='create.php?id_event=<?= $events['f_id'] ?>'">
-                <i class="fas fa-plus mr-2"></i> Tambah Tamu
-            </button>
-        </div>
+    <nav class="bg-[#0A2C82] shadow-lg flex justify-between items-center p-4">
+        <a onclick="window.location.href='../'" class="flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
+            <i class="fas fa-arrow-left text-[clamp(0.75rem,2vw,1rem)]"></i>
+        </a>
+        <h1 class="text-[clamp(0.75rem,2vw,2rem)] font-bold text-white text-center">Admin - Guest List</h1>
+        <button class="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200 text-[clamp(0.50rem,1vw,0.89rem)]" onclick="window.location.href='create.php?id_event=<?= $events['f_id'] ?>'">
+            <i class="fas fa-plus mr-0 md:mr-2"></i> <span class="hidden md:block">Tambah Tamu</span>
+        </button>
     </nav>
     <div class="container mx-auto p-6">
-        <h1 class="text-[clamp(2rem,4vw,3rem)] font-bold text-center mb-3">    
+        <h1 class="text-[clamp(1.5rem,4vw,3rem)] font-bold text-center mb-3">    
             <?= $events['f_acara'] ?>
         </h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -32,7 +30,7 @@
                          <img alt="<?= $tamu['f_nama_tamu'] ?>" class="mx-auto my-auto w-[80%] h-[80%] object-cover transition-transform duration-300" src="<?=$tamu['f_file_path'].$tamu['f_kode_qr']; ?>"/>
                             <div class="flex justify-between items-center p-4 bottom-0 group-hover:bg-white group-hover:bg-opacity-50 transition-transform duration-300 w-full h-auto absolute">
                                 <div class="w-[60%]">
-                                  <h2 class="text-xl font-semibold">
+                                  <h2 class="text-[clamp(0.75rem,2vw,1.3rem)] font-semibold">
                                     <?= $tamu['f_kode_unik_tamu']; ?>
                                     /
                                     <span class="font-semibold">
@@ -41,15 +39,15 @@
                                   </h2>
                                 </div>
                               <div>
-                                <button class="bg-green-500 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 z-[999] mr-2" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="window.location.href='edit.php?id_guest=<?= $tamu['f_id'] ?>'">
+                                <button class="bg-green-500 transition ease-in hover:opacity-100 text-white px-2 py-2 rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 z-[999] mr-2 text-[clamp(0.50rem,1vw,0.89rem)]" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="window.location.href='edit.php?id_guest=<?= $tamu['f_id'] ?>'">
                                      <i class="fas fa-pen-square">
                                      </i>
                                 </button>
-                                <button class="bg-blue-500 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999] mr-2" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="window.location.href='send-message.php?nomor_telepon=<?= $tamu['f_nomor_telepon'] ?>'">
+                                <button class="bg-blue-500 transition ease-in hover:opacity-100 text-white px-2 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 z-[999] mr-2 text-[clamp(0.50rem,1vw,0.89rem)]" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="window.location.href='send-message.php?nomor_telepon=<?= $tamu['f_nomor_telepon'] ?>&kode_unik=<?= $tamu['f_kode_unik_tamu']?>&file_path=<?=$tamu['f_file_path']?>'">
                                      <i class="fas fa-paper-plane">
                                      </i>
                                 </button>
-                                <button class="bg-red-500 transition ease-in hover:opacity-100 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 z-[999]" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="confirmDelete(<?= $tamu['f_id'] ?>, <?= $tamu['f_acara_id'] ?>)">
+                                <button class="bg-red-500 transition ease-in hover:opacity-100 text-white px-2 py-2 rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 z-[999] text-[clamp(0.50rem,1vw,0.89rem)]" onmouseover="HideDetail(<?= $tamu['f_id'] ?>)" onmouseout="ShowDetail(<?= $tamu['f_id'] ?>)" onclick="confirmDelete(<?= $tamu['f_id'] ?>, <?= $tamu['f_acara_id'] ?>)">
                                      <i class="fas fa-trash">
                                      </i>
                                 </button>

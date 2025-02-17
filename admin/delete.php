@@ -6,6 +6,8 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['level']) && $_COOKIE['level'] == 'A
 		require 'functions/admin/admin-management/delete-admin.php';
 	} elseif (isset($_GET['id_guest'])) {
 		require 'functions/admin/guest/delete-guest.php';
+	} elseif (isset($_GET['id_image'])) {
+		require 'functions/admin/invitations/delete-gallery.php';
 	} else {
 		require 'functions/admin/invitations/delete-invitations.php';
 	}

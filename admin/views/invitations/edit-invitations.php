@@ -9,47 +9,45 @@
 </head>
 <body class="bg-[#DBE5FF] font-roboto min-h-screen text-gray-800">
     <!-- Navbar -->
-    <nav class="bg-[#0A2C82] shadow-lg">
-        <div class="container mx-auto flex justify-between items-center p-4 relative">
-            <!-- Tombol Kembali -->
-            <a onclick="window.location.href = localStorage.getItem('previousPage')" class="absolute left-4 flex items-center space-x-2 text-white bg-red-500 px-4 py-2 rounded-full shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
-                <i class="fas fa-arrow-left"></i>
-                <span>Kembali</span>
-            </a>
-            <!-- Judul Navbar -->
-            <h1 class="text-2xl font-bold mx-auto text-white">Edit Acara</h1>
-        </div>
+    <nav class="bg-[#0A2C82] shadow-lg flex justify-between items-center p-4 relative">
+        <!-- Tombol Kembali -->
+        <a onclick="window.location.href = localStorage.getItem('previousPage')" class="absolute left-4 flex items-center space-x-2 text-white bg-red-500 px-4 py-2 rounded-full shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200 text-[clamp(0.50rem,1vw,0.75rem)]">
+            <i class="fas fa-arrow-left"></i>
+            <span class="hidden md:block">Kembali</span>
+        </a>
+        <!-- Judul Navbar -->
+        <h1 class="text-[clamp(0.75rem,2vw,2rem)] font-bold mx-auto text-white">Edit Acara</h1>
     </nav>
 
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-6 text-[clamp(0.55rem,1vw,1rem)]">
         <!-- Form Edit Acara -->
         <form action="" method="POST" enctype="multipart/form-data" class="bg-white text-gray-800 p-6 rounded-lg shadow-lg mt-6">
             <div class="mb-4">
-                <label for="event_name" class="block text-sm font-medium text-gray-700">Nama Acara</label>
+                <label for="event_name" class="block font-medium text-gray-700">Nama Acara</label>
                 <input type="text" id="event_name" value="<?= $acara['f_acara'];?>" name="acara" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan nama acara">
             </div>
             <input type="text" value="<?= $acara['f_file_path'];?>" name="filePath" hidden>
             <div class="mb-4">
-                <label for="event_date" class="block text-sm font-medium text-gray-700">Tanggal Acara</label>
+                <label for="event_date" class="block font-medium text-gray-700">Tanggal Acara</label>
                 <input type="date" id="event_date" value="<?= $acara['f_tanggal_acara'];?>" name="tanggal" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
             </div>
             <div class="mb-4">
-                <label for="event_finish" class="block text-sm font-medium text-gray-700">Tanggal Acara Berakhir</label>
+                <label for="event_finish" class="block font-medium text-gray-700">Tanggal Acara Berakhir</label>
                 <input type="date" id="event_finish" value="<?= $acara['f_tanggal_acara_berakhir'];?>" name="tanggal_berakhir" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
             </div>
             <div class="mb-4">
-                <label for="event_location" class="block text-sm font-medium text-gray-700">Lokasi Acara</label>
+                <label for="event_location" class="block font-medium text-gray-700">Lokasi Acara</label>
                 <input type="text" id="event_location" value="<?= $acara['f_alamat'];?>" name="lokasi" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan lokasi acara">
             </div>
             <div class="mb-4">
-                <label for="event_embed_location" class="block text-sm font-medium text-gray-700">Embed Lokasi Acara</label>
+                <label for="event_embed_location" class="block font-medium text-gray-700">Embed Lokasi Acara</label>
                 <input type="text" id="event_embed_location" value="<?= $acara['f_embed_alamat'];?>" name="embed_lokasi" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Masukkan link embed lokasi acara">
             </div>
             <input type="text" value="<?= str_replace("../".strtolower(str_replace(" ", "-",$acara['f_acara']))."/asset/", "", $acara['f_image']);?>" name="imageOld" hidden>
             <div class="mb-4">
-                <label for="event_image" class="block text-sm font-medium text-gray-700">Unggah Gambar Acara</label>
+                <label for="event_image" class="block font-medium text-gray-700">Unggah Gambar Acara</label>
                 <input type="file" id="event_image" name="gambar" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
-                <p class="text-sm text-gray-500 mt-2">Format yang diperbolehkan: JPG, PNG, JPEG, GIF, WEBP, JFIF, dan SVG. Maksimal ukuran: 5MB.</p>
+                <p class="text-gray-500 mt-2">Format yang diperbolehkan: JPG, PNG, JPEG, GIF, WEBP, JFIF, dan SVG. Maksimal ukuran: 5MB.</p>
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="bg-[#0A2C82] text-white px-6 py-2 rounded-lg shadow hover:bg-blue-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200">

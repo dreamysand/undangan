@@ -9,45 +9,45 @@
 </head>
 <body class="bg-gray-100 font-roboto min-h-screen text-gray-800">
     <!-- Navbar -->
-    <nav class="bg-[#0A2C82] shadow-lg">
-        <div class="container mx-auto flex justify-between items-center p-4">
-        	<a onclick="window.location.href='../'" class="absolute left-4 flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
-                <i class="fas fa-arrow-left"></i>
+    <nav class="bg-[#0A2C82] shadow-lg flex justify-between items-center p-4">
+        	<a onclick="window.location.href='../'" class="flex items-center space-x-2 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition duration-200">
+                <i class="fas fa-arrow-left text-[clamp(0.75rem,2vw,1rem)]"></i>
             </a>
-            <h1 class="text-2xl font-bold text-white">Admin - Admin List</h1>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200" onclick="window.location.href='create.php?admin'">
-                <i class="fas fa-plus mr-2"></i> Tambah Admin
+            <h1 class="text-[clamp(0.75rem,2vw,2rem)] font-bold text-white">Admin - Admin List</h1>
+            <button class="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200 text-[clamp(0.50rem,1vw,0.89rem)]" onclick="window.location.href='create.php?admin'">
+                <i class="fas fa-plus mr-0 md:mr-2"></i> <span class="hidden md:block">Tambah Admin</span>
             </button>
-        </div>
     </nav>
 
     <div class="container mx-auto p-6">
         <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
-            <table class="min-w-full text-left text-sm text-gray-800 text-center">
+            <table class="min-w-full text-left text-gray-800 text-center text-wrap">
                 <thead class="bg-gray-200">
                     <tr>
-                        <th class="px-4 py-2 font-medium">ID</th>
-                        <th class="px-4 py-2 font-medium">Username</th>
-                        <th class="px-4 py-2 font-medium">Email</th>
-                        <th class="px-4 py-2 font-medium">Password</th>
-                        <th class="px-4 py-2 font-medium">Status</th>
-                        <th class="px-4 py-2 font-medium">Action</th>
+                        <th class="px-2 py-2 font-medium text-[clamp(0.45rem,1vw,1rem)]">ID</th>
+                        <th class="px-2 py-2 font-medium text-[clamp(0.45rem,1vw,1rem)]">Username</th>
+                        <th class="px-2 py-2 font-medium text-[clamp(0.45rem,1vw,1rem)]">Email</th>
+                        <th class="px-2 py-2 font-medium text-[clamp(0.45rem,1vw,1rem)]">Password</th>
+                        <th class="px-2 py-2 font-medium text-[clamp(0.45rem,1vw,1rem)]">Status</th>
+                        <th class="px-2 py-2 font-medium text-[clamp(0.45rem,1vw,1rem)]">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($result as $admin): ?>
                         <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2"><?= $admin['f_id'] ?></td>
-                            <td class="px-4 py-2"><?= $admin['f_username'] ?></td>
-                            <td class="px-4 py-2"><?= $admin['f_email'] ?></td>
-                            <td class="px-4 py-2"><?= $admin['f_password'] ?></td>
-                            <td class="px-4 py-2"><?= $admin['f_status'] ?></td>
-                            <td class="px-4 py-2">
-                            	<a href="edit.php?id_admin=<?= $admin['f_id'] ?>" class="bg-[#82EA4A] p-1 hover:bg-opacity-75 rounded-md mr-5">
-                            		<i class="fas fa-pen-square mr-2 mb-[1rem]"></i> Edit Admin
+                            <td class="px-2 py-2 text-[clamp(0.45rem,1vw,1rem)]"><?= $admin['f_id'] ?></td>
+                            <td class="px-2 py-2 text-[clamp(0.45rem,1vw,1rem)]"><?= $admin['f_username'] ?></td>
+                            <td class="px-2 py-2 text-[clamp(0.45rem,1vw,1rem)]"><?= $admin['f_email'] ?></td>
+                            <td class="px-2 py-2 text-[clamp(0.45rem,1vw,1rem)]"><?= $admin['f_password'] ?></td>
+                            <td class="px-2 py-2 text-[clamp(0.45rem,1vw,1rem)]"><?= $admin['f_status'] ?></td>
+                            <td class="px-2 py-2 text-[clamp(0.45rem,1vw,1rem)] grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-3">
+                            	<a href="edit.php?id_admin=<?= $admin['f_id'] ?>" class="bg-[#82EA4A] p-1 hover:bg-opacity-75 rounded-md">
+                            		<i class="fas fa-pen-square"></i>
+                                    <span class="hidden md:block">Edit Admin</span>
                             	</a>
                             	<a href="#" onclick="confirmDelete(<?=$admin['f_id'] ?>)" class="bg-[#E21313] p-1 hover:bg-opacity-75 text-white rounded-md">
-                            		<i class="fas fa-trash mr-2"></i> Hapus Admin
+                            		<i class="fas fa-trash"></i>
+                                    <span class="hidden md:block">Hapus Admin</span>
                             	</a>
                             </td>
                         </tr>

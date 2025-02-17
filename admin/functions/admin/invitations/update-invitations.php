@@ -22,11 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     FROM $table
     WHERE 
     `f_tanggal_acara` = :tanggal
+    AND 
+    `f_id` != :id_acara
     ";
 
     $stmt = $config->prepare($sql);
     $stmt->execute([
-        ':tanggal' => $tanggal
+        ':tanggal' => $tanggal,
+        ':id_acara' => $_GET['id_acara']
     ]);
     $result = $stmt->fetchColumn();
     if ($result > 0) {
@@ -44,11 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     COUNT(*)
     FROM $table
     WHERE 
-    `f_acara` = :acara 
+    `f_acara` = :acara
+    AND 
+    `f_id` != :id_acara
     ";
     $stmt = $config->prepare($sql);
     $stmt->execute([
-        ':acara' => $acara
+        ':acara' => $acara,
+        ':id_acara' => $_GET['id_acara']
     ]);
     $result = $stmt->fetchColumn();
     if ($result > 0) {
@@ -88,6 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
                                                     `f_tanggal_acara`=:tanggal,
                                                     `f_image`=:img, 
                                                     `f_file_path`=:file_path, 
+                                                    `f_embed_alamat`=:embed_alamat, 
+                                                    `f_tanggal_acara_berakhir`=:tanggal_berakhir, 
                                                     `f_admin_id`=:id_admin 
                                                     WHERE 
                                                     `f_id`=:id_acara";
@@ -99,6 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
                                                 ':tanggal' => $tanggal,
                                                 ':img' => $image,
                                                 ':file_path' => $acara_Parent_Path,
+                                                ':embed_alamat' => $embed_lokasi,
+                                                ':tanggal_berakhir' => $tanggal_berakhir,
                                                 ':id_admin' => $_COOKIE['id'],
                                                 ':id_acara' => $_GET['id_acara']
                                             ])) {

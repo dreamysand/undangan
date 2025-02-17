@@ -1,3 +1,24 @@
+<?php
+$bulan_indonesia = [
+    "January" => "Januari", "February" => "Februari", "March" => "Maret",
+    "April" => "April", "May" => "Mei", "June" => "Juni",
+    "July" => "Juli", "August" => "Agustus", "September" => "September",
+    "October" => "Oktober", "November" => "November", "December" => "Desember"
+];
+
+// Array Nama Hari
+$hari_indonesia = [
+    "Sunday" => "Minggu", "Monday" => "Senin", "Tuesday" => "Selasa",
+    "Wednesday" => "Rabu", "Thursday" => "Kamis", "Friday" => "Jumat",
+    "Saturday" => "Sabtu"
+];
+
+// Ambil nama bulan & hari dalam bahasa Indonesia
+$bulan = $bulan_indonesia[date("F", strtotime($acara['f_tanggal_acara']))];
+$hari  = $hari_indonesia[date("l", strtotime($acara['f_tanggal_acara']))];
+$tahun = date("Y", strtotime($acara['f_tanggal_acara']));
+$tanggal = date("d", strtotime($acara['f_tanggal_acara']));
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,7 +34,8 @@
             <img src="asset/schoolview.jpg" alt="Job Fair" class="mx-auto rounded-xl shadow-md">
         </div>
         <h2 class="mt-6 text-2xl font-semibold text-blue-600">JOB FAIR 2025</h2>
-        <p class="text-gray-700 text-lg">OF SMKN 71 Jakarta</p>
+        <p class="text-gray-700 text-lg">SMKN 71 Jakarta</p>
+        <div class="mt-6 text-gray-600">Tanggal: <span class="font-medium"><?= "$hari, $tanggal $bulan $tahun"?></span></div>
         <form method="POST" action="" class="mt-6">
             <label for="unique_id" class="block text-gray-700 text-lg font-medium">Masukkan kode unik Anda:</label>
             <input type="text" id="unique_id" name="unique_id" class="mt-2 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-lg" placeholder="Masukkan kode unik">

@@ -8,6 +8,30 @@ if (isset($_POST['username']) &&
 	$id_admin = $_GET['id_admin'];
 	$table = 't_admin';
 
+	$sql = "
+    SELECT
+    COUNT(*)
+    FROM $table
+    WHERE 
+    `f_email_tamu` = :email
+    AND
+    `f_id` != :id_admin
+    ";
+
+    $stmt = $config->prepare($sql);
+    $stmt->execute([
+		':email'=>$email,
+		':id_admin'=>$id_admin
+    ]);
+    $result = $stmt->fetchColumn();
+    if ($result > 0) {
+    	?>
+		<script>
+			alert("Tidak boleh ada email yang sama.");
+		</script>
+		<?php
+		exit();
+    }
 	if (!is_null($_POST['password'])) {
 		$password = $_POST['password'];
 		if ($hashed_Password = password_hash($password, PASSWORD_DEFAULT)) {

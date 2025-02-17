@@ -53,7 +53,7 @@
      </button>
     </div>
     <div class="md:w-1/3 p-4">
-     <img alt="School entrance with a signboard of SMKN 71 Jakarta Timur" class="rounded shadow" width="1000px" height="200px" src="https://storage.googleapis.com/a1aa/image/cWrem1JEjuXcciMCfiSWHlRqab0vu2yTXyEs9MZOfT8UWxNoA.jpg" width="300"/>
+     <img alt="School entrance with a signboard of SMKN 71 Jakarta Timur" class="rounded shadow" width="1000px" height="200px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ8eXzF-A6GNHoN0LjeMq5zF3UznG6bJMfVg&s" width="300"/>
     </div>
    </div>
   </div>

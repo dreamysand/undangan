@@ -82,14 +82,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
 												`f_alamat`, 
 												`f_tanggal_acara`, 
 												`f_image`, 
-												`f_file_path`) 
+												`f_file_path`,
+												`f_embed_alamat`,
+												`f_tanggal_acara_berakhir`) 
 											VALUES 
 											(:admin_id,
 												:acara,
 												:alamat,
 												:tanggal,
 												:img,
-												:filepath)";
+												:filepath,
+												:embed_alamat,
+												:tanggal_berakhir)";
 									$stmt = $config->prepare($sql);	
 									if ($stmt->execute([
 										':admin_id' => $_COOKIE['id'],
@@ -98,6 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
 										':tanggal' => $tanggal,
 										':img' => $image,
 										':filepath' => $acara_Parent_Path,
+										':embed_alamat' => $embed_lokasi,
+                                        ':tanggal_berakhir' => $tanggal_berakhir,
 									])) {
 										?>
 										<script>

@@ -41,5 +41,28 @@ if (isset($_SESSION['unique_id'])) {
         </script>
         <?php
     }
+} else {
+    $full_url = $_SERVER['REQUEST_URI'];
+    $filepath = explode('/', trim($full_url, '/'));
+    $filepath = '../'.$filepath[1];
+    $table = 't_invitations'; 
+    $sql = "SELECT * FROM $table WHERE f_file_path = :filepath";
+    $stmt = $config->prepare($sql);
+    $stmt->execute([
+        ':filepath'=>$filepath
+    ]);
+    if ($acara = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        <script>
+            console.log("Acara berhasil diambil");
+        </script>
+        <?php
+    } else {
+        ?>
+        <script>
+            console.log("Acara gagal diambil");
+        </script>
+    <?php
+    }
 }
 ?>

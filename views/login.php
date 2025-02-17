@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="bg-gradient-to-b from-white to-blue-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-80">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-[80%] lg:w-[30%]">
         <h2 class="text-2xl font-bold text-center text-blue-900 mb-6">LOGIN</h2>
         <form method="POST" action="">
             <div class="mb-4">
@@ -20,9 +20,11 @@
                 <input class="mr-2" type="checkbox" id="remember" name="remember">
                 <label class="text-sm text-blue-900" for="remember">Remember Me</label>
             </div>
-            <a href="forgot-password.php">Forgot Password</a>
             <div class="text-center">
                 <button class="bg-blue-900 text-white font-bold py-2 px-4 rounded-full w-full" type="submit">LOGIN</button>
+            </div>
+            <div class="mt-6 flex items-center justify-center">
+            <a href="forgot-password.php" class="text-sm text-blue-900">Forgot Password</a>
             </div>
         </form>
     </div>

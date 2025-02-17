@@ -14,9 +14,10 @@ function UploadIMG($file, $location)
 				'svg'
 			];
 			$target_Dir = $location;
-			$target_File = $target_Dir . $file['name'];
 			$img_Ext_Info = new SplFileInfo($file['name']);
 			$img_Ext = $img_Ext_Info->getExtension();
+			$new_File_Name = uniqid().".$img_Ext";
+			$target_File = $target_Dir . $new_File_Name;
 
 			if (in_array($img_Ext, $allowed_Ext)) {
 				if (move_uploaded_file($file['tmp_name'], $target_File)) {
@@ -58,9 +59,10 @@ function UploadIMGS($file, $location)
 					'svg'
 				];
 				$target_Dir = $location;
-				$target_File = $target_Dir . $name;
 				$img_Ext_Info = new SplFileInfo($name);
 				$img_Ext = $img_Ext_Info->getExtension();
+				$new_File_Name = uniqid().".$img_Ext";
+				$target_File = $target_Dir . $new_File_Name;
 
 				if (in_array($img_Ext, $allowed_Ext)) {
 					if (move_uploaded_file($file['tmp_name'][$index], $target_File)) {
@@ -70,13 +72,15 @@ function UploadIMGS($file, $location)
 						<script>
 							console.log('Gambar gagal diupload');
 						</script>
-						<?php					}
+						<?php 
+					}
 				} else {
 					?>
 					<script>
 						console.log('Ekstensi tidak didukung');
 					</script>
-					<?php				}
+					<?php			
+				}
 			}
 		}		
 	}
